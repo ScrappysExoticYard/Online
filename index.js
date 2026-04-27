@@ -166,7 +166,7 @@ function displayResults() {
     let tags = '';
     if (r.hasSuper) tags += `<span style="display:inline-block;padding:2px 6px;border-radius:2px;font-size:9px;background:var(--accent-glow);border:1px solid rgba(230,126,34,0.3);color:var(--accent);margin-right:4px">Super</span>`;
     else if (r.hasVisual) tags += `<span style="display:inline-block;padding:2px 6px;border-radius:2px;font-size:9px;background:var(--accent-glow);border:1px solid rgba(230,126,34,0.3);color:var(--accent);margin-right:4px">Visual</span>`;
-    if (r.hasHet) tags += `<span style="display:inline-block;padding:2px 6px;border-radius:2px;font-size:9px;background:rgba(33, 145, 80, 0.15);border:1px solid rgba(33, 145, 80, 0.4);color:#219150;margin-right:4px">Het</span>`;
+    if (r.hasHet) tags += `<span style="display:inline-block;padding:2px 6px;border-radius:2px;font-size:9px;background:rgba(100,158,92,0.15);border:1px solid rgba(100,158,92,0.4);color:#7fbe71;margin-right:4px">Het</span>`;
 
     html += `<tr>
       <td class="phenotype-cell">
@@ -201,44 +201,43 @@ function exportToPNG() {
   const gpIsMale = { sgf:true, sgm:false, dgf:true, dgm:false };
   function stateTag(state) {
     const map = {
-      'Visual': { bg:'rgba(211, 84, 0, 0.15)', border:'rgba(211, 84, 0, 0.5)', color:'#D35400' },
-      'Visual (Leatherback)': { bg:'rgba(211, 84, 0, 0.15)', border:'rgba(211, 84, 0, 0.5)', color:'#D35400' },
-      'Super (Silkback)': { bg:'rgba(160, 64, 0, 0.18)', border:'rgba(160, 64, 0, 0.5)', color:'#A04000' },
-      'Het': { bg:'rgba(33, 145, 80, 0.15)', border:'rgba(33, 145, 80, 0.45)', color:'#219150' },
+      'Visual': { bg:'rgba(212,168,67,0.18)', border:'rgba(212,168,67,0.5)', color:'#d4a843' },
+      'Visual (Leatherback)': { bg:'rgba(212,168,67,0.18)', border:'rgba(212,168,67,0.5)', color:'#d4a843' },
+      'Super (Silkback)': { bg:'rgba(196,92,58,0.18)', border:'rgba(196,92,58,0.5)', color:'#e8866a' },
+      'Het': { bg:'rgba(100,158,92,0.15)', border:'rgba(100,158,92,0.45)', color:'#7fbe71' },
     };
     const style = map[state] || (state.includes('Poss')
-      ? { bg:'rgba(41, 128, 185, 0.15)', border:'rgba(41, 128, 185, 0.45)', color:'#2980B9' }
-      : { bg:'rgba(93, 64, 55, 0.35)', border:'#34495E', color:'#BDC3C7' });
+      ? { bg:'rgba(100,130,200,0.15)', border:'rgba(100,130,200,0.45)', color:'#7a9ee0' }
+      : { bg:'rgba(74,68,56,0.35)', border:'#2e2a22', color:'#8a7f6e' });
     return `<span style="display:inline-block;padding:2px 8px;border-radius:3px;font-size:10px;letter-spacing:0.04em;background:${style.bg};border:1px solid ${style.border};color:${style.color};white-space:nowrap">${state}</span>`;
   }
   function panelHTML(title, isMale, name, genes) {
-    const sexColor = isMale ? '#2980B9' : '#C0392B';
-    const sexBg = isMale ? 'rgba(41, 128, 185, 0.15)' : 'rgba(192, 57, 43, 0.15)';
-    const sexBorder = isMale ? 'rgba(41, 128, 185, 0.35)' : 'rgba(192, 57, 43, 0.35)';
+    const sexColor = isMale ? '#7aabee' : '#ee7aaa';
+    const sexBg = isMale ? 'rgba(100,150,220,0.15)' : 'rgba(220,100,130,0.15)';
+    const sexBorder = isMale ? 'rgba(100,150,220,0.35)' : 'rgba(220,100,130,0.35)';
     const sym = isMale ? '♂' : '♀';
     let genesHTML = '';
     if (genes.length === 0) {
-      genesHTML = `<div style="color:#95A5A6;font-size:11px;padding:8px 0">No genes</div>`;
+      genesHTML = `<div style="color:#4a4438;font-size:11px;padding:8px 0">No genes</div>`;
     } else {
       genesHTML = genes.map(g => `
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid #34495E">
-          <span style="font-size:11px;color:#F9F9F9">${g.gene}</span>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid #1e1c18">
+          <span style="font-size:11px;color:#e8e0d0">${g.gene}</span>
           ${stateTag(g.state)}
         </div>`).join('');
     }
     return `
-      <div style="background:#212F3D;border:1px solid #34495E;border-radius:6px;overflow:hidden;flex:1;min-width:0">
-        <div style="background:#2C3E50;border-bottom:1px solid #34495E;padding:10px 16px;display:flex;align-items:center;gap:10px">
+      <div style="background:#1a1814;border:1px solid #2e2a22;border-radius:6px;overflow:hidden;flex:1;min-width:0">
+        <div style="background:#242018;border-bottom:1px solid #2e2a22;padding:10px 16px;display:flex;align-items:center;gap:10px">
           <div style="width:22px;height:22px;border-radius:50%;background:${sexBg};border:1px solid ${sexBorder};display:flex;align-items:center;justify-content:center;color:${sexColor};font-size:13px;font-weight:700;flex-shrink:0">${sym}</div>
-          <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.05em;text-transform:uppercase;color:#F9F9F9">${title}</span>
+          <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.05em;text-transform:uppercase;color:#e8e0d0">${title}</span>
           ${name ? `<span style="margin-left:auto;color:${sexColor};font-size:11px">${name}</span>` : ''}
         </div>
         <div style="padding:14px 16px">
-          <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#95A5A6;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid #34495E">Genetic Profile</div>
+          <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#4a4438;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid #2e2a22">Genetic Profile</div>
           ${genesHTML}
         </div>
       </div>`;
-  }
   }
   let gpSections = '';
   [['sgf','sgm'],['dgf','dgm']].forEach(([lk,rk]) => {
@@ -247,7 +246,7 @@ function exportToPNG() {
     const right = gpInfo[rk] ? panelHTML(gpTitles[rk], gpIsMale[rk], gpInfo[rk].name, gpInfo[rk].genes) : `<div style="flex:1"></div>`;
     gpSections += `
       <div style="margin-bottom:6px">
-        <div style="font-size:10px;letter-spacing:0.15em;color:#95A5A6;text-transform:uppercase;margin-bottom:10px;padding-bottom:5px;border-bottom:1px solid #34495E">Grandparents</div>
+        <div style="font-size:10px;letter-spacing:0.15em;color:#4a4438;text-transform:uppercase;margin-bottom:10px;padding-bottom:5px;border-bottom:1px solid #2e2a22">Grandparents</div>
         <div style="display:flex;gap:16px">${left}${right}</div>
       </div>`;
   });
@@ -257,33 +256,33 @@ function exportToPNG() {
       const pct = (r.prob * 100).toFixed(1);
       const barW = Math.round(r.prob * 200);
       let tags = '';
-      if (r.hasSuper) tags += `<span style="display:inline-block;padding:1px 6px;border-radius:2px;font-size:9px;background:rgba(160, 64, 0, 0.15);border:1px solid rgba(160, 64, 0, 0.45);color:#A04000;margin-right:4px">Super</span>`;
-      else if (r.hasVisual) tags += `<span style="display:inline-block;padding:1px 6px;border-radius:2px;font-size:9px;background:rgba(211, 84, 0, 0.18);border:1px solid rgba(211, 84, 0, 0.45);color:#D35400;margin-right:4px">Visual</span>`;
-      if (r.hasHet) tags += `<span style="display:inline-block;padding:1px 6px;border-radius:2px;font-size:9px;background:rgba(33, 145, 80, 0.15);border:1px solid rgba(33, 145, 80, 0.4);color:#219150;margin-right:4px">Het</span>`;
+      if (r.hasSuper) tags += `<span style="display:inline-block;padding:1px 6px;border-radius:2px;font-size:9px;background:rgba(196,92,58,0.18);border:1px solid rgba(196,92,58,0.45);color:#e8866a;margin-right:4px">Super</span>`;
+      else if (r.hasVisual) tags += `<span style="display:inline-block;padding:1px 6px;border-radius:2px;font-size:9px;background:rgba(212,168,67,0.18);border:1px solid rgba(212,168,67,0.45);color:#d4a843;margin-right:4px">Visual</span>`;
+      if (r.hasHet) tags += `<span style="display:inline-block;padding:1px 6px;border-radius:2px;font-size:9px;background:rgba(100,158,92,0.15);border:1px solid rgba(100,158,92,0.4);color:#7fbe71;margin-right:4px">Het</span>`;
       return `
-        <tr style="background:${i%2===0?'#212F3D':'#1C2833'}">
-          <td style="padding:10px 14px;border-bottom:1px solid #34495E;vertical-align:middle">
-            <div>${tags}<span style="font-family:'Syne',sans-serif;font-weight:600;font-size:12px;color:#F9F9F9">${r.phenotype}</span></div>
-            <div style="font-size:10px;color:#BDC3C7;font-style:italic;margin-top:3px">${r.genotype}</div>
+        <tr style="background:${i%2===0?'#1a1814':'#161410'}">
+          <td style="padding:10px 14px;border-bottom:1px solid #2e2a22;vertical-align:middle">
+            <div>${tags}<span style="font-family:'Syne',sans-serif;font-weight:600;font-size:12px;color:#e8e0d0">${r.phenotype}</span></div>
+            <div style="font-size:10px;color:#8a7f6e;font-style:italic;margin-top:3px">${r.genotype}</div>
           </td>
-          <td style="padding:10px 14px;border-bottom:1px solid #34495E;vertical-align:middle;width:220px">
+          <td style="padding:10px 14px;border-bottom:1px solid #2e2a22;vertical-align:middle;width:220px">
             <div style="display:flex;align-items:center;gap:10px">
-              <div style="flex:1;height:5px;background:#34495E;border-radius:3px;overflow:hidden">
-                <div style="height:100%;width:${barW}px;max-width:100%;background:linear-gradient(90deg,#A04000,#D35400);border-radius:3px"></div>
+              <div style="flex:1;height:5px;background:#2e2a22;border-radius:3px;overflow:hidden">
+                <div style="height:100%;width:${barW}px;max-width:100%;background:linear-gradient(90deg,#c47c2a,#d4a843);border-radius:3px"></div>
               </div>
-              <span style="font-size:12px;color:#D35400;font-weight:500;min-width:40px;text-align:right">${pct}%</span>
+              <span style="font-size:12px;color:#d4a843;font-weight:500;min-width:40px;text-align:right">${pct}%</span>
             </div>
           </td>
         </tr>`;
     }).join('');
     resultsHTML = `
       <div style="margin-top:24px">
-        <div style="font-size:10px;letter-spacing:0.15em;color:#95A5A6;text-transform:uppercase;margin-bottom:10px;padding-bottom:5px;border-bottom:1px solid #34495E">Clutch Results — ${sireName} × ${damName}</div>
-        <table style="width:100%;border-collapse:collapse;border:1px solid #34495E;border-radius:6px;overflow:hidden">
+        <div style="font-size:10px;letter-spacing:0.15em;color:#4a4438;text-transform:uppercase;margin-bottom:10px;padding-bottom:5px;border-bottom:1px solid #2e2a22">Clutch Results — ${sireName} × ${damName}</div>
+        <table style="width:100%;border-collapse:collapse;border:1px solid #2e2a22;border-radius:6px;overflow:hidden">
           <thead>
-            <tr style="background:#2C3E50">
-              <th style="padding:8px 14px;text-align:left;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#BDC3C7;font-weight:400;border-bottom:1px solid #34495E">Phenotype / Genotype</th>
-              <th style="padding:8px 14px;text-align:left;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#BDC3C7;font-weight:400;border-bottom:1px solid #34495E;width:220px">Probability</th>
+            <tr style="background:#242018">
+              <th style="padding:8px 14px;text-align:left;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#8a7f6e;font-weight:400;border-bottom:1px solid #2e2a22">Phenotype / Genotype</th>
+              <th style="padding:8px 14px;text-align:left;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#8a7f6e;font-weight:400;border-bottom:1px solid #2e2a22;width:220px">Probability</th>
             </tr>
           </thead>
           <tbody>${rows}</tbody>
@@ -293,36 +292,36 @@ function exportToPNG() {
   const html = `
     <div id="png-export-root" style="
       width:880px;
-      background:#1C2833;
-      color:#F9F9F9;
+      background:#0f0e0c;
+      color:#e8e0d0;
       font-family:'DM Mono',monospace;
       font-size:13px;
       padding:36px 40px 40px;
       position:relative;
     ">
-      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#D35400 25%,#D35400 75%,transparent)"></div>
+      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#d4a843 25%,#d4a843 75%,transparent)"></div>
       <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:20px">
         <div>
           <div style="font-family:'Syne',sans-serif;font-size:26px;font-weight:800;line-height:1">
-            Linage <span style="color:#D35400">Tool</span>
+            Linage <span style="color:#d4a843">Tool</span>
           </div>
-          <div style="font-size:10px;color:#BDC3C7;letter-spacing:0.14em;text-transform:uppercase;margin-top:6px">Scrappy's Exotic Yard · Bearded Dragon Phenotype & Probability Engine</div>
+          <div style="font-size:10px;color:#8a7f6e;letter-spacing:0.14em;text-transform:uppercase;margin-top:6px">Scrappy's Exotic Yard · Bearded Dragon Phenotype & Probability Engine</div>
         </div>
-        <div style="font-size:10px;color:#95A5A6;letter-spacing:0.1em">${new Date().toLocaleDateString()}</div>
+        <div style="font-size:10px;color:#4a4438;letter-spacing:0.1em">${new Date().toLocaleDateString()}</div>
       </div>
-      <div style="border-top:1px solid #34495E;padding-top:20px;margin-bottom:20px">
+      <div style="border-top:1px solid #2e2a22;padding-top:20px;margin-bottom:20px">
         <div style="text-align:center;margin-bottom:16px">
-          <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:#D35400;letter-spacing:-0.01em">${sireName} × ${damName}</div>
-          <div style="font-size:10px;color:#BDC3C7;margin-top:6px">
+          <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:#d4a843;letter-spacing:-0.01em">${sireName} × ${damName}</div>
+          <div style="font-size:10px;color:#8a7f6e;margin-top:6px">
             ♂ ${sireGenes.map(g=>`${g.state} ${g.gene}`).join(' · ') || '—'}
           </div>
-          <div style="font-size:10px;color:#BDC3C7;margin-top:2px">
+          <div style="font-size:10px;color:#8a7f6e;margin-top:2px">
             ♀ ${damGenes.map(g=>`${g.state} ${g.gene}`).join(' · ') || '—'}
           </div>
         </div>
         ${gpSections}
         <div style="margin-top:${gpSections ? '16px' : '0'}">
-          <div style="font-size:10px;letter-spacing:0.15em;color:#95A5A6;text-transform:uppercase;margin-bottom:10px;padding-bottom:5px;border-bottom:1px solid #34495E">Parents</div>
+          <div style="font-size:10px;letter-spacing:0.15em;color:#4a4438;text-transform:uppercase;margin-bottom:10px;padding-bottom:5px;border-bottom:1px solid #2e2a22">Parents</div>
           <div style="display:flex;gap:16px">
             ${panelHTML('Sire', true, sireName, sireGenes)}
             ${panelHTML('Dam', false, damName, damGenes)}
@@ -343,7 +342,7 @@ function exportToPNG() {
     html2canvas(target, {
       scale: 2,
       useCORS: true,
-      backgroundColor: '#1C2833',
+      backgroundColor: '#0f0e0c',
       logging: false,
       width: 880,
     }).then(canvas => {

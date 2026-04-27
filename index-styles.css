@@ -67,10 +67,10 @@
   box-shadow: 0 0 0 3px var(--accent-glow);
 }
 
-body.light-mode .form-group input,
-body.light-mode .form-group select {
-  background: #F0F5F9;
-  color: #2C3E50;
+body.dark-mode .form-group input,
+body.dark-mode .form-group select {
+  background: #242018;
+  color: #e8e0d0;
 }
 
 .gene-selector {
@@ -104,14 +104,14 @@ body.light-mode .form-group select {
   border-color: var(--accent);
 }
 
-body.light-mode .gene-btn {
-  background: #F0F5F9;
-  color: #2C3E50;
+body.dark-mode .gene-btn {
+  background: #242018;
+  color: #e8e0d0;
 }
 
-body.light-mode .gene-btn.active {
-  background: #D35400;
-  color: #FFFFFF;
+body.dark-mode .gene-btn.active {
+  background: #d4a843;
+  color: #0f0e0c;
 }
 
 .selected-genes-list {
@@ -133,10 +133,10 @@ body.light-mode .gene-btn.active {
   gap: 6px;
 }
 
-body.light-mode .gene-tag {
-  background: rgba(211, 84, 0, 0.12);
-  border-color: rgba(211, 84, 0, 0.3);
-  color: #D35400;
+body.dark-mode .gene-tag {
+  background: rgba(212,168,67,0.15);
+  border-color: rgba(212,168,67,0.3);
+  color: #d4a843;
 }
 
 .gene-tag button {
@@ -149,8 +149,8 @@ body.light-mode .gene-tag {
   line-height: 1;
 }
 
-body.light-mode .gene-tag button {
-  color: #D35400;
+body.dark-mode .gene-tag button {
+  color: #d4a843;
 }
 
 .button-group {
@@ -200,9 +200,9 @@ body.light-mode .gene-tag button {
   color: var(--accent);
 }
 
-body.light-mode .btn-secondary {
-  background: #F0F5F9;
-  color: #2C3E50;
+body.dark-mode .btn-secondary {
+  background: #242018;
+  color: #e8e0d0;
 }
 
 .btn:disabled {
@@ -293,41 +293,41 @@ body.light-mode .btn-secondary {
   margin-bottom: 10px;
 }
 
-body.light-mode .parent-panel {
-  background: #FFFFFF;
-  border-color: #E0E0E0;
+body.dark-mode .parent-panel {
+  background: #1a1814;
+  border-color: #2e2a22;
 }
 
-body.light-mode .panel-title {
-  color: #2C3E50;
+body.dark-mode .panel-title {
+  color: #e8e0d0;
 }
 
-body.light-mode .results-section {
-  background: #FFFFFF;
-  border-color: #E0E0E0;
+body.dark-mode .results-section {
+  background: #1a1814;
+  border-color: #2e2a22;
 }
 
-body.light-mode .results-title {
-  color: #2C3E50;
-  border-bottom-color: #E0E0E0;
+body.dark-mode .results-title {
+  color: #e8e0d0;
+  border-bottom-color: #2e2a22;
 }
 
-body.light-mode .results-table th {
-  background: #F0F5F9;
-  color: #5D7A8C;
-  border-bottom-color: #E0E0E0;
+body.dark-mode .results-table th {
+  background: #242018;
+  color: #8a7f6e;
+  border-bottom-color: #2e2a22;
 }
 
-body.light-mode .results-table td {
-  border-bottom-color: #E0E0E0;
+body.dark-mode .results-table td {
+  border-bottom-color: #2e2a22;
 }
 
-body.light-mode .genotype-cell {
-  color: #5D7A8C;
+body.dark-mode .genotype-cell {
+  color: #8a7f6e;
 }
 
-body.light-mode .prob-bar {
-  background: #E0E0E0;
+body.dark-mode .prob-bar {
+  background: #2e2a22;
 }
 
 @media (max-width: 768px) {
