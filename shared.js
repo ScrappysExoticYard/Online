@@ -1,15 +1,15 @@
 function toggleColorScheme() {
   const body = document.body;
   const toggle = document.getElementById('color-toggle');
-  body.classList.toggle('dark-mode');
+  body.classList.toggle('light-mode');
   toggle.classList.toggle('active');
-  localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
+  localStorage.setItem('lightMode', body.classList.contains('light-mode'));
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  const isDarkMode = localStorage.getItem('darkMode') === 'true';
-  if (isDarkMode) {
-    document.body.classList.add('dark-mode');
+  const isLightMode = localStorage.getItem('lightMode') === 'true';
+  if (isLightMode) {
+    document.body.classList.add('light-mode');
     document.getElementById('color-toggle').classList.add('active');
   }
 });

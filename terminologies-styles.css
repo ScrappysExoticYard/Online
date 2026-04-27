@@ -96,38 +96,38 @@
   color: var(--text-dim);
 }
 
-body.dark-mode .term-card {
-  background: #1a1814;
-  border-color: #2e2a22;
+body.light-mode .term-card {
+  background: #FFFFFF;
+  border-color: #E0E0E0;
 }
 
-body.dark-mode .term-card:hover {
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+body.light-mode .term-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-body.dark-mode .term-name {
-  color: #e8e0d0;
+body.light-mode .term-name {
+  color: #2C3E50;
 }
 
-body.dark-mode .term-definition {
-  color: #8a7f6e;
+body.light-mode .term-definition {
+  color: #5D7A8C;
 }
 
-body.dark-mode .category-header {
-  border-bottom-color: #d4a843;
+body.light-mode .category-header {
+  border-bottom-color: #D35400;
 }
 
-body.dark-mode .category-icon {
-  background: rgba(212,168,67,0.15);
-  color: #d4a843;
+body.light-mode .category-icon {
+  background: rgba(211, 84, 0, 0.12);
+  color: #D35400;
 }
 
-body.dark-mode .category-title {
-  color: #e8e0d0;
+body.light-mode .category-title {
+  color: #2C3E50;
 }
 
-body.dark-mode .page-title {
-  color: #e8e0d0;
+body.light-mode .page-title {
+  color: #2C3E50;
 }
 
 @media (max-width: 768px) {
