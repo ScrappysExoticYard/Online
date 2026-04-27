@@ -4,100 +4,207 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Scrappy's Exotic Yard Online</title>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Montserrat:wght@600;700;800&family=Courier+Prime:wght@400;700&family=Syne:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="index-styles.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
-<body>
-  <header>
-    <div class="logo-mark">Scrappy's</div>
-    <div class="header-main">
-      <h1>Exotic <span>Yard</span></h1>
-      <div class="header-sub">Bearded Dragon Breeding Tools</div>
-    </div>
-    <div class="header-badge">Online</div>
-    <div class="color-toggle">
-      <span class="toggle-label">Dark Mode</span>
-      <div id="color-toggle" class="toggle-switch" onclick="toggleColorScheme()"></div>
-    </div>
-  </header>
-
-  <nav>
-    <a href="index.html" class="active">Genetics Calculator</a>
-    <a href="terminologies.html">Terminologies</a>
-  </nav>
-
-  <div class="app-container">
-    <div class="parents-grid">
-      <div class="parent-column">
-        <div class="parent-panel">
-          <div class="panel-title">Sire (♂)</div>
-          <div class="form-group">
-            <label for="sire-name">Sire Name</label>
-            <input type="text" id="sire-name" placeholder="e.g., Zeus">
-          </div>
-          <div id="sire-genes"></div>
-        </div>
-
-        <div class="parent-panel">
-          <div class="panel-title">Sire's Father (Paternal Grandfather)</div>
-          <div class="form-group">
-            <label for="sgf-name">Name (Optional)</label>
-            <input type="text" id="sgf-name" placeholder="e.g., Titan">
-          </div>
-          <div id="sgf-genes"></div>
-        </div>
-
-        <div class="parent-panel">
-          <div class="panel-title">Sire's Mother (Paternal Grandmother)</div>
-          <div class="form-group">
-            <label for="sgm-name">Name (Optional)</label>
-            <input type="text" id="sgm-name" placeholder="e.g., Aurora">
-          </div>
-          <div id="sgm-genes"></div>
-        </div>
-      </div>
-
-      <div class="parent-column">
-        <div class="parent-panel">
-          <div class="panel-title">Dam (♀)</div>
-          <div class="form-group">
-            <label for="dam-name">Dam Name</label>
-            <input type="text" id="dam-name" placeholder="e.g., Athena">
-          </div>
-          <div id="dam-genes"></div>
-        </div>
-
-        <div class="parent-panel">
-          <div class="panel-title">Dam's Father (Maternal Grandfather)</div>
-          <div class="form-group">
-            <label for="dgf-name">Name (Optional)</label>
-            <input type="text" id="dgf-name" placeholder="e.g., Apollo">
-          </div>
-          <div id="dgf-genes"></div>
-        </div>
-
-        <div class="parent-panel">
-          <div class="panel-title">Dam's Mother (Maternal Grandmother)</div>
-          <div class="form-group">
-            <label for="dgm-name">Name (Optional)</label>
-            <input type="text" id="dgm-name" placeholder="e.g., Luna">
-          </div>
-          <div id="dgm-genes"></div>
-        </div>
-      </div>
-    </div>
-
-    <div style="display:flex;gap:10px;margin-top:24px">
-      <button class="btn btn-primary" onclick="simulate()">⚙️ Calculate Results</button>
-      <button class="btn btn-secondary" id="btn-export-png" onclick="exportToPNG()">⬇ Export PNG</button>
-    </div>
-
-    <div id="results-container"></div>
+<body class="dark-mode">
+<header>
+  <div class="logo-mark">Scrappy's</div>
+  <img src="ScrappyLogo.png" alt="Scrappy's Exotic Yard" style="width:95px;height:63px;object-fit:contain;align-self:center;">
+  <div class="header-main">
+    <h1>Linage <span>Tool</span></h1>
+    <div class="header-sub">Bearded Dragon - Phenotype &amp; Probability Engine</div>
   </div>
-
-  <script src="shared.js"></script>
-  <script src="index.js"></script>
+  <div class="header-badge">v4.0 · Beta</div>
+</header>
+<nav>
+  <a href="index.html" class="active">Breeding Tool</a>
+  <a href="terminologies.html">Terminologies</a>
+ <!--  <a href="guides.html">Guides</a> -->
+  <div class="color-toggle" id="color-toggle-container">
+    <span class="toggle-label">Dark Mode</span>
+    <div class="toggle-switch active" id="color-toggle" onclick="toggleColorScheme()"></div>
+  </div>
+</nav>
+<div class="app-container">
+<div class="parents-grid">
+    <!-- SIRE COLUMN -->
+    <div class="parent-column">
+      <!-- SIRE -->
+      <div class="panel" id="sire-panel">
+        <div class="panel-header">
+          <div class="sex-badge male">♂</div>
+          <div class="panel-title">Sire</div>
+        </div>
+        <div class="panel-body">
+          <div class="pedigree-row">
+            <div class="field-group">
+              <label>Sire Name</label>
+              <input type="text" id="sire-name" placeholder="e.g. Skippy">
+            </div>
+          </div>
+          <div class="section-label">Genetic Profile</div>
+          <div class="gene-list" id="sire-genes"></div>
+          <div class="empty-genes" id="sire-empty">No genes added yet.</div>
+          <button class="btn-add-gene" onclick="addGene('sire')">+ Add Gene</button>
+          <div class="gp-toggles">
+            <button class="btn-gp-toggle" id="toggle-sgf" onclick="toggleGrandparent('sgf')">
+              <span class="toggle-icon">♂</span> Sire's Father
+            </button>
+            <button class="btn-gp-toggle" id="toggle-sgm" onclick="toggleGrandparent('sgm')">
+              <span class="toggle-icon">♀</span> Sire's Mother
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- SIRE'S GRANDPARENTS -->
+      <div class="grandparents-area" id="sire-gp-area">
+        <div class="grandparent-panel-wrap" id="sgf-wrap">
+          <div class="panel" id="sgf-panel">
+            <div class="panel-header">
+              <div class="sex-badge male">♂</div>
+              <div class="panel-title">Sire's Father</div>
+            </div>
+            <div class="panel-body">
+              <div class="pedigree-row">
+                <div class="field-group">
+                  <label>Name</label>
+                  <input type="text" id="sgf-name" placeholder="Name">
+                </div>
+              </div>
+              <div class="section-label">Genetic Profile</div>
+              <div class="gene-list" id="sgf-genes"></div>
+              <div class="empty-genes" id="sgf-empty">No genes added yet.</div>
+              <button class="btn-add-gene" onclick="addGene('sgf')">+ Add Gene</button>
+            </div>
+          </div>
+        </div>
+        <div class="grandparent-panel-wrap" id="sgm-wrap">
+          <div class="panel" id="sgm-panel">
+            <div class="panel-header">
+              <div class="sex-badge female">♀</div>
+              <div class="panel-title">Sire's Mother</div>
+            </div>
+            <div class="panel-body">
+              <div class="pedigree-row">
+                <div class="field-group">
+                  <label>Name</label>
+                  <input type="text" id="sgm-name" placeholder="Name">
+                </div>
+              </div>
+              <div class="section-label">Genetic Profile</div>
+              <div class="gene-list" id="sgm-genes"></div>
+              <div class="empty-genes" id="sgm-empty">No genes added yet.</div>
+              <button class="btn-add-gene" onclick="addGene('sgm')">+ Add Gene</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- end sire column -->
+    <!-- DAM COLUMN -->
+    <div class="parent-column">
+      <!-- DAM -->
+      <div class="panel" id="dam-panel">
+        <div class="panel-header">
+          <div class="sex-badge female">♀</div>
+          <div class="panel-title">Dam</div>
+        </div>
+        <div class="panel-body">
+          <div class="pedigree-row">
+            <div class="field-group">
+              <label>Dam Name</label>
+              <input type="text" id="dam-name" placeholder="e.g. Comet">
+            </div>
+          </div>
+          <div class="section-label">Genetic Profile</div>
+          <div class="gene-list" id="dam-genes"></div>
+          <div class="empty-genes" id="dam-empty">No genes added yet.</div>
+          <button class="btn-add-gene" onclick="addGene('dam')">+ Add Gene</button>
+          <div class="gp-toggles">
+            <button class="btn-gp-toggle" id="toggle-dgf" onclick="toggleGrandparent('dgf')">
+              <span class="toggle-icon">♂</span> Dam's Father
+            </button>
+            <button class="btn-gp-toggle" id="toggle-dgm" onclick="toggleGrandparent('dgm')">
+              <span class="toggle-icon">♀</span> Dam's Mother
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- DAM'S GRANDPARENTS -->
+      <div class="grandparents-area" id="dam-gp-area">
+        <div class="grandparent-panel-wrap" id="dgf-wrap">
+          <div class="panel" id="dgf-panel">
+            <div class="panel-header">
+              <div class="sex-badge male">♂</div>
+              <div class="panel-title">Dam's Father</div>
+            </div>
+            <div class="panel-body">
+              <div class="pedigree-row">
+                <div class="field-group">
+                  <label>Name</label>
+                  <input type="text" id="dgf-name" placeholder="Name">
+                </div>
+              </div>
+              <div class="section-label">Genetic Profile</div>
+              <div class="gene-list" id="dgf-genes"></div>
+              <div class="empty-genes" id="dgf-empty">No genes added yet.</div>
+              <button class="btn-add-gene" onclick="addGene('dgf')">+ Add Gene</button>
+            </div>
+          </div>
+        </div>
+        <div class="grandparent-panel-wrap" id="dgm-wrap">
+          <div class="panel" id="dgm-panel">
+            <div class="panel-header">
+              <div class="sex-badge female">♀</div>
+              <div class="panel-title">Dam's Mother</div>
+            </div>
+            <div class="panel-body">
+              <div class="pedigree-row">
+                <div class="field-group">
+                  <label>Name</label>
+                  <input type="text" id="dgm-name" placeholder="Name">
+                </div>
+              </div>
+              <div class="section-label">Genetic Profile</div>
+              <div class="gene-list" id="dgm-genes"></div>
+              <div class="empty-genes" id="dgm-empty">No genes added yet.</div>
+              <button class="btn-add-gene" onclick="addGene('dgm')">+ Add Gene</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- end dam column -->
+  </div><!-- end parents-grid -->
+  <div class="calculate-section">
+    <button class="btn-secondary btn-clear" onclick="clearAll()">Clear All</button>
+    <button class="btn-secondary" onclick="document.getElementById('load-input').click()">Load</button>
+    <input type="file" id="load-input" accept=".json" style="display:none" onchange="loadData(event)">
+    <button class="btn-calculate" id="btn-calculate" onclick="calculate()" disabled>Calculate Clutch Genetics</button>
+    <button class="btn-secondary" onclick="saveData()">Save</button>
+    <button class="btn-secondary btn-export" id="btn-export-png" onclick="exportPNG()">⬇ Export PNG</button>
+    <div class="calc-hint" id="calc-hint">Add at least one gene to Sire and Dam to calculate</div>
+  </div>
+  <div id="results-section">
+    <div class="results-header">
+      <div class="results-title">Clutch Results</div>
+      <div class="results-meta" id="results-meta"></div>
+    </div>
+    <div id="warnings-container"></div>
+    <div id="info-container"></div>
+    <div class="results-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Phenotype</th>
+            <th>Genotype</th>
+            <th class="prob-bar-cell">Probability</th>
+          </tr>
+        </thead>
+        <tbody id="results-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<script src="index.js"></script>
 </body>
 </html>
