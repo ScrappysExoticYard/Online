@@ -1,4 +1,4 @@
-  :root {
+:root {
     --bg: #2C3E50;
     --surface: #212F3D;
     --surface2: #1C2833;
@@ -226,6 +226,26 @@
     color: var(--gunmetal);
     letter-spacing: -0.01em;
   }
+  .subcategory-header {
+    margin-top: 32px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .subcategory-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+  .subcategory-description {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin: 0;
+  }
   /* TERM CARDS */
   .terms-grid {
     display: grid;
@@ -252,6 +272,39 @@
     color: var(--accent);
     margin-bottom: 8px;
     letter-spacing: 0.02em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .gene-type-badge {
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 2px 6px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    font-family: 'Roboto', sans-serif;
+    flex-shrink: 0;
+  }
+  .gene-type-badge.recessive {
+    background: rgba(58, 156, 229, 0.15);
+    color: #3a9ce5;
+    border: 1px solid rgba(58, 156, 229, 0.3);
+  }
+  .gene-type-badge.codom {
+    background: rgba(175, 122, 197, 0.15);
+    color: #af7ac5;
+    border: 1px solid rgba(175, 122, 197, 0.3);
+  }
+  .gene-type-badge.dominant {
+    background: rgba(82, 190, 128, 0.15);
+    color: #52be80;
+    border: 1px solid rgba(82, 190, 128, 0.3);
+  }
+  .gene-type-badge.lineage {
+    background: rgba(212, 168, 67, 0.15);
+    color: #d4a843;
+    border: 1px solid rgba(212, 168, 67, 0.3);
   }
   .term-definition {
     font-size: 14px;
@@ -298,6 +351,3 @@
     margin-top: 60px;
     font-size: 13px;
   }
-
-
-</style>

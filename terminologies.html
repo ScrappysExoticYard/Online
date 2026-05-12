@@ -3,19 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Scrappy's Exotic Yard Online</title>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+<title></title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Montserrat:wght@600;700;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="terminologies.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
 <body>
 <header>
-  <div class="logo-mark">Scrappy's</div>
-  <img src="ScrappyLogo.png" alt="Scrappy's Exotic Yard" style="width:95px;height:63px;object-fit:contain;align-self:center;">
+  <div class="logo-mark"></div>
+  <img src="HEXLogo.png" alt="HEX REPTILES" style="width:95px;height:63px;object-fit:contain;align-self:center;">
   <div class="header-main">
-    <h1>Linage <span>Tool</span></h1>
-    <div class="header-sub">Bearded Dragon - Terminologies</div>
+    <h1>HEX <span>REPTILES</span></h1>
+    <div class="header-sub">Bearded Dragon - Phenotype & Probability Engine</div>
   </div>
-  <div class="header-badge">v5.0 · Beta</div>
+  <div class="header-badge">v6.0 · Beta</div>
 </header>
+
+
 <nav>
   <a href="index.html">Breeding Tool</a>
   <a href="terminologies.html" class="active">Terminologies</a>
@@ -38,6 +43,24 @@
     </div>
     <div class="terms-grid">
       <div class="term-card">
+        <div class="term-name">Phenotype</div>
+        <div class="term-definition">Physical appearance (Visual) based on expressed genes.</div>
+      </div>
+      <div class="term-card">
+        <div class="term-name">Genotype</div>
+        <div class="term-definition">The actual DNA makeup, including hidden or carrier traits.</div>
+      </div>
+      <div class="term-card">
+        <div class="term-name">Het (Heterozygous)</div>
+        <div class="term-definition">A carrier of a recessive gene that is not visually expressed.</div>
+      </div>
+
+      <div class="term-card">
+        <div class="term-name">Double Het</div>
+        <div class="term-definition">An animal that carries two distinct recessive mutations in its genotype without expressing them visually (e.g., a dragon carrying both the Zero and Witblits genes).</div>
+      </div>
+
+      <div class="term-card">
         <div class="term-name">Super</div>
         <div class="term-definition">The homozygous form of a co-dominant gene (e.g., a Silkback is the "Super" form of a Leatherback).</div>
       </div>
@@ -45,10 +68,7 @@
         <div class="term-name">Hidden Gene</div>
         <div class="term-definition">A genetic trait present in the genotype that is not currently expressed in the phenotype but can be passed to progeny.</div>
       </div>
-      <div class="term-card">
-        <div class="term-name">Het (Heterozygous)</div>
-        <div class="term-definition">A carrier of a recessive gene that is not visually expressed.</div>
-      </div>
+
       <div class="term-card">
         <div class="term-name">Homo (Homozygous)</div>
         <div class="term-definition">Possessing two copies of a gene, making the trait visually apparent.</div>
@@ -77,14 +97,7 @@
         <div class="term-name">Probability</div>
         <div class="term-definition">The statistical likelihood of specific traits appearing in a clutch based on the parents' genetics.</div>
       </div>
-      <div class="term-card">
-        <div class="term-name">Phenotype</div>
-        <div class="term-definition">Physical appearance (Visual) based on expressed genes.</div>
-      </div>
-      <div class="term-card">
-        <div class="term-name">Genotype</div>
-        <div class="term-definition">The actual DNA makeup, including hidden or carrier traits.</div>
-      </div>
+
       <div class="term-card">
         <div class="term-name">Morphology</div>
         <div class="term-definition">The study of the form and structure of the animal.</div>
@@ -132,101 +145,174 @@
       <div class="category-icon">🎨</div>
       <h2 class="category-title">Morphs & Traits</h2>
     </div>
+
+    <!-- RECESSIVE -->
+    <div class="subcategory-header">
+      <h3 class="subcategory-title">Recessive Morphs</h3>
+      <p class="subcategory-description">A genetic trait that requires two copies of the gene (one from each parent) to manifest visually. If an animal carries only one copy, it is known as a "Het" (Heterozygous) and appears physically normal but can pass the trait to its offspring.</p>
+    </div>
+
     <div class="terms-grid">
       <div class="term-card">
-        <div class="term-name">Hypomelanistic</div>
-        <div class="term-definition">Reduction of melanin (black pigment); results in clear/white nails.</div>
+        <div class="term-name">Hypomelanistic (Hypo)<span class="gene-type-badge recessive">Recessive</span></div>
+        <div class="term-definition">Reduces dark pigments (melanin) in the skin and nails, resulting in brighter, cleaner colors and clear or white nails.</div>
       </div>
       <div class="term-card">
-        <div class="term-name">Translucent</div>
-        <div class="term-definition">Suppression of white skin pigment; results in "gummy" skin and solid black eyes.</div>
+        <div class="term-name">Translucent (Trans)<span class="gene-type-badge recessive">Recessive</span></div>
+        <div class="term-definition">A mutation that affects skin opacity and eye color. Juveniles often have a see-through appearance on their bellies, and adults typically have solid black eyes.</div>
       </div>
       <div class="term-card">
-        <div class="term-name">Leatherback</div>
-        <div class="term-definition">Co-dominant trait that reduces scale size for a smoother feel.</div>
+        <div class="term-name">Witblits<span class="gene-type-badge recessive">Recessive</span></div>
+        <div class="term-definition">A patternless mutation that produces a dragon with no markings, often appearing in shades of silver, white, or cream.</div>
       </div>
       <div class="term-card">
-        <div class="term-name">Silkback</div>
-        <div class="term-definition">The scaleless "Super" form of the Leatherback mutation.</div>
+        <div class="term-name">Zero<span class="gene-type-badge recessive">Recessive</span></div>
+        <div class="term-definition">A patternless recessive mutation that creates a completely silver or white dragon with no pattern.</div>
       </div>
       <div class="term-card">
-        <div class="term-name">Witblits</div>
-        <div class="term-definition">A patternless mutation producing earthy, monochromatic colors (cream, peach, tan).</div>
+        <div class="term-name">Silver<span class="gene-type-badge recessive">Recessive</span></div>
+        <div class="term-definition">A rare, high-white recessive variant that maintains an extremely bright, metallic-white appearance.</div>
       </div>
       <div class="term-card">
-        <div class="term-name">Zero</div>
-        <div class="term-definition">A patternless mutation producing cool tones (white, silver, slate grey).</div>
+        <div class="term-name">Axanthic<span class="gene-type-badge recessive">Recessive</span></div>
+        <div class="term-definition">A mutation that prevents the production of yellow and red pigments, resulting in a dragon that is primarily grey, black, and white.</div>
       </div>
       <div class="term-card">
-        <div class="term-name">Axanthic</div>
-        <div class="term-definition">Absence of yellow and red pigments; results in a grey/black/white appearance.</div>
+        <div class="term-name">Pied (Panda)<span class="gene-type-badge recessive">Recessive</span></div>
+        <div class="term-definition">A rare mutation that causes patches of white or patternless skin to appear randomly across the body.</div>
       </div>
       <div class="term-card">
-        <div class="term-name">Dunner</div>
-        <div class="term-definition">Dominant trait; scales point sideways and tail patterns are vertical.</div>
+        <div class="term-name">Wero<span class="gene-type-badge recessive">Recessive</span></div>
+        <div class="term-definition">A visual combination of two recessive traits: Witblits and Zero. Typically produces a patternless white dragon that may show dark rubbing or tail markings.</div>
       </div>
       <div class="term-card">
-        <div class="term-name">Genetic Stripe</div>
-        <div class="term-definition">Dominant trait with two symmetrical lines running from neck to tail base.</div>
-      </div>
-      <div class="term-card">
-        <div class="term-name">Tiger</div>
-        <div class="term-definition">Dominant trait featuring horizontal bars or stripes along the sides.</div>
-      </div>
-      <div class="term-card">
-        <div class="term-name">Red Monster</div>
-        <div class="term-definition">Extreme selective breeding for total body saturation of deep red pigment.</div>
-      </div>
-      <div class="term-card">
-        <div class="term-name">Citrus</div>
-        <div class="term-definition">Selective breeding focused on neon yellow and lemon hues.</div>
-      </div>
-      <div class="term-card">
-        <div class="term-name">Yellow</div>
-        <div class="term-definition">Selective breeding focused on high-contrast yellow pigments.</div>
-      </div>
-      <div class="term-card">
-        <div class="term-name">Orange</div>
-        <div class="term-definition">Selective breeding focused on vibrant tangerine and pumpkin tones.</div>
-      </div>
-      <div class="term-card">
-        <div class="term-name">Sunburst</div>
-        <div class="term-definition">Selective breeding focused on intense orange and yellow saturation.</div>
-      </div>
-      <div class="term-card">
-        <div class="term-name">Paradox</div>
-        <div class="term-definition">Spontaneous developmental anomaly resulting in asymmetrical color patches; not heritable.</div>
-      </div>
-      <div class="term-card">
-        <div class="term-name">Normal</div>
-        <div class="term-definition">A "Wild Type" dragon without any specific genetic mutations.</div>
-      </div>
-
-      <div class="term-card">
-        <div class="term-name">Wero</div>
-        <div class="term-definition">A hybrid line derived from Witblits and Zero genetics, typically showing reduced pattern with enhanced contrast or deeper coloration.</div>
-      </div>
-      <div class="term-card">
-        <div class="term-name">Blue Bar</div>
-        <div class="term-definition">Blue coloration appearing on the sides of the body, most visible in juveniles.</div>
-      </div>
-      <div class="term-card">
-        <div class="term-name">Super Hypo</div>
+        <div class="term-name">Super Hypo<span class="gene-type-badge recessive">Recessive</span></div>
         <div class="term-definition">An extreme reduction of melanin beyond standard Hypomelanistic expression.</div>
       </div>
+    </div>
+
+    <!-- CO-DOMINANT -->
+    <div class="subcategory-header">
+      <h3 class="subcategory-title">Co-Dominant Morphs</h3>
+      <p class="subcategory-description">A type of inheritance where one copy of the gene creates a visible change, but two copies (Homozygous) create a more extreme or distinct "Super" version.</p>
+    </div>
+
+    <div class="terms-grid">
       <div class="term-card">
-        <div class="term-name">Reduced Pattern</div>
-        <div class="term-definition">A dragon with minimal visible markings compared to typical patterning.</div>
+        <div class="term-name">Leatherback<span class="gene-type-badge codom">Co-Dominant</span></div>
+        <div class="term-definition">A mutation that reduces the size and spikes of the scales, giving the dragon a smoother texture.</div>
       </div>
       <div class="term-card">
-        <div class="term-name">High Color</div>
-        <div class="term-definition">Selective breeding focused on intense, saturated coloration.</div>
+        <div class="term-name">Silkie (Super Leatherback)<span class="gene-type-badge codom">Co-Dominant</span></div>
+        <div class="term-definition">The Super form of the Leatherback gene. When a dragon has two copies, it has almost no scales at all.</div>
+      </div>
+      <div class="term-card">
+        <div class="term-name">Dunner<span class="gene-type-badge codom">Co-Dominant</span></div>
+        <div class="term-definition">Affects the direction and texture of scales and the orientation of the pattern. Dunner scales often point outward or upward rather than flat against the body.</div>
+      </div>
+    </div>
+
+    <!-- DOMINANT -->
+    <div class="subcategory-header">
+      <h3 class="subcategory-title">Dominant Morphs</h3>
+      <p class="subcategory-description">A trait that only requires one copy of the gene to show up visually. There is no hidden or Het form; if the dragon has the gene, it will display the trait.</p>
+    </div>
+
+    <div class="terms-grid">
+      <div class="term-card">
+        <div class="term-name">Genetic Stripe<span class="gene-type-badge dominant">Dominant</span></div>
+        <div class="term-definition">A mutation that produces clear, distinct stripes running vertically down the back from the neck to the tail.</div>
+      </div>
+      <div class="term-card">
+        <div class="term-name">Tiger<span class="gene-type-badge dominant">Dominant</span></div>
+        <div class="term-definition">A pattern-based trait that creates dark horizontal bars or stripes across the dragon's back.</div>
+      </div>
+    </div>
+
+    <!-- POLYGENIC -->
+    <div class="subcategory-header">
+      <h3 class="subcategory-title">Polygenic (Line-Bred) Traits</h3>
+      <p class="subcategory-description">Traits that are not controlled by a single on/off switch but by many genes working together. These are refined over generations by selective breeding.</p>
+    </div>
+
+    <div class="terms-grid">
+      <div class="term-card">
+        <div class="term-name">Red Monster<span class="gene-type-badge lineage">Polygenic</span></div>
+        <div class="term-definition">A high-end line of extremely dark, intense red dragons.</div>
+      </div>
+      <div class="term-card">
+        <div class="term-name">Citrus<span class="gene-type-badge lineage">Polygenic</span></div>
+        <div class="term-definition">A line-bred trait focusing on high-vibrancy yellows and light oranges.</div>
+      </div>
+      <div class="term-card">
+        <div class="term-name">Yellow<span class="gene-type-badge lineage">Polygenic</span></div>
+        <div class="term-definition">A selectively bred line emphasizing bright yellow pigmentation.</div>
+      </div>
+      <div class="term-card">
+        <div class="term-name">Orange<span class="gene-type-badge lineage">Polygenic</span></div>
+        <div class="term-definition">A color line specifically bred for deep, saturated orange hues, ranging from peach to neon orange.</div>
+      </div>
+      <div class="term-card">
+        <div class="term-name">Sunburst<span class="gene-type-badge lineage">Polygenic</span></div>
+        <div class="term-definition">A specific color line bred for intense, fiery orange-red hues.</div>
+      </div>
+      <div class="term-card">
+        <div class="term-name">Dark Red<span class="gene-type-badge lineage">Polygenic</span></div>
+        <div class="term-definition">A color trait selected for deep, saturated red tones.</div>
+      </div>
+      <div class="term-card">
+        <div class="term-name">Blood Red<span class="gene-type-badge lineage">Polygenic</span></div>
+        <div class="term-definition">A selectively bred line emphasizing deep crimson coloration.</div>
+      </div>
+      <div class="term-card">
+        <div class="term-name">Sandfire<span class="gene-type-badge lineage">Polygenic</span></div>
+        <div class="term-definition">One of the oldest selectively refined red/orange bloodlines.</div>
+      </div>
+      <div class="term-card">
+        <div class="term-name">German Giant<span class="gene-type-badge lineage">Polygenic</span></div>
+        <div class="term-definition">A selectively bred line focused on unusually large body size.</div>
+      </div>
+      <div class="term-card">
+        <div class="term-name">Pastel<span class="gene-type-badge lineage">Polygenic</span></div>
+        <div class="term-definition">A softer, lighter coloration selectively enhanced through breeding.</div>
+      </div>
+      <div class="term-card">
+        <div class="term-name">Rainbow<span class="gene-type-badge lineage">Polygenic</span></div>
+        <div class="term-definition">Dragons selectively bred to express multiple vibrant colors simultaneously.</div>
+      </div>
+      <div class="term-card">
+        <div class="term-name">Blue Bar<span class="gene-type-badge lineage">Polygenic</span></div>
+        <div class="term-definition">A line trait where juveniles display visible bluish side bars.</div>
+      </div>
+      <div class="term-card">
+        <div class="term-name">High Color<span class="gene-type-badge lineage">Polygenic</span></div>
+        <div class="term-definition">General term for selectively enhanced vivid coloration.</div>
+      </div>
+      <div class="term-card">
+        <div class="term-name">Reduced Pattern<span class="gene-type-badge lineage">Polygenic</span></div>
+        <div class="term-definition">A selectively bred appearance featuring minimal visible markings compared to standard patterning.</div>
       </div>
       <div class="term-card">
         <div class="term-name">Speckling</div>
         <div class="term-definition">Small scattered pigment spots across the body.</div>
       </div>
+    </div>
 
+    <!-- VISUAL ANOMALIES -->
+    <div class="subcategory-header">
+      <h3 class="subcategory-title">Visual Anomalies / Unstable Traits</h3>
+      <p class="subcategory-description">Traits or appearances that visually resemble morphs but are not proven to follow stable inheritable genetic patterns.</p>
+    </div>
+
+    <div class="terms-grid">
+      <div class="term-card">
+        <div class="term-name">Paradox</div>
+        <div class="term-definition">A random glitch in the dragon's color or pattern that results in patches of unexpected color that do not follow normal symmetry or stable inheritance.</div>
+      </div>
+      <div class="term-card">
+        <div class="term-name">Normal</div>
+        <div class="term-definition">A Wild Type dragon without any recognized genetic morph mutations.</div>
+      </div>
     </div>
   </div>
 

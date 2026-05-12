@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Scrappy's Exotic Yard Online</title>
+<title></title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Montserrat:wght@600;700;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="index.css">
@@ -11,14 +11,16 @@
 </head>
 <body>
 <header>
-  <div class="logo-mark">Scrappy's</div>
-  <img src="ScrappyLogo.png" alt="Scrappy's Exotic Yard" style="width:95px;height:63px;object-fit:contain;align-self:center;">
+  <div class="logo-mark"></div>
+  <img src="HEXLogo.png" alt="HEX REPTILES" style="width:95px;height:63px;object-fit:contain;align-self:center;">
   <div class="header-main">
-    <h1>Linage <span>Tool</span></h1>
+    <h1>HEX <span>REPTILES</span></h1>
     <div class="header-sub">Bearded Dragon - Phenotype & Probability Engine</div>
   </div>
-  <div class="header-badge">v5.0 · Beta</div>
+  <div class="header-badge">v6.0 · Beta</div>
 </header>
+
+
 <nav>
   <a href="index.html" class="active">Breeding Tool</a>
   <a href="terminologies.html">Terminologies</a>
@@ -231,6 +233,21 @@ const GENES = {
     states: ['Visual','Het','66% Poss Het','50% Poss Het','Normal','Unknown'],
     short: 'Zero'
   },
+  Silver: {
+    category: 'recessive',
+    states: ['Visual','Het','66% Poss Het','50% Poss Het','Normal','Unknown'],
+    short: 'Silver'
+  },
+  Axanthic: {
+    category: 'recessive',
+    states: ['Visual','Het','66% Poss Het','50% Poss Het','Normal','Unknown'],
+    short: 'Axanthic'
+  },
+  Pied: {
+    category: 'recessive',
+    states: ['Visual','Het','66% Poss Het','50% Poss Het','Normal','Unknown'],
+    short: 'Pied'
+  },
   'Genetic Stripe': {
     category: 'recessive',
     states: ['Visual','Het','66% Poss Het','50% Poss Het','Normal','Unknown'],
@@ -251,10 +268,75 @@ const GENES = {
     states: ['Visual','Normal'],
     short: 'Tiger'
   },
+  'Red Monster': {
+    category: 'lineage',
+    states: ['Visual','Normal'],
+    short: 'RedMon'
+  },
+  Citrus: {
+    category: 'lineage',
+    states: ['Visual','Normal'],
+    short: 'Citrus'
+  },
+  Orange: {
+    category: 'lineage',
+    states: ['Visual','Normal'],
+    short: 'Orange'
+  },
+  Sunburst: {
+    category: 'lineage',
+    states: ['Visual','Normal'],
+    short: 'Sunburst'
+  },
+  'Dark Red': {
+    category: 'lineage',
+    states: ['Visual','Normal'],
+    short: 'DarkRed'
+  },
+  'Blood Red': {
+    category: 'lineage',
+    states: ['Visual','Normal'],
+    short: 'BloodRed'
+  },
+  Sandfire: {
+    category: 'lineage',
+    states: ['Visual','Normal'],
+    short: 'Sandfire'
+  },
   'German Giant': {
     category: 'lineage',
     states: ['Visual','Normal'],
     short: 'GG'
+  },
+  Pastel: {
+    category: 'lineage',
+    states: ['Visual','Normal'],
+    short: 'Pastel'
+  },
+  Rainbow: {
+    category: 'lineage',
+    states: ['Visual','Normal'],
+    short: 'Rainbow'
+  },
+  'Blue Bar': {
+    category: 'lineage',
+    states: ['Visual','Normal'],
+    short: 'BlueBar'
+  },
+  'High Color': {
+    category: 'lineage',
+    states: ['Visual','Normal'],
+    short: 'HighCol'
+  },
+  Yellow: {
+    category: 'lineage',
+    states: ['Visual','Normal'],
+    short: 'Yellow'
+  },
+  'Reduced Pattern': {
+    category: 'lineage',
+    states: ['Visual','Normal'],
+    short: 'RedPat'
   },
   'Red Expression': {
     category: 'nonmendelian',
@@ -264,17 +346,12 @@ const GENES = {
   'Citrus Expression': {
     category: 'nonmendelian',
     states: ['None', 'Low (Yellow)', 'High (Neon Citrus)'],
-    short: 'Citrus'
+    short: 'CitrusExp'
   },
   'Blue/Silver Bar': {
     category: 'nonmendelian',
     states: ['None', 'Visual'],
     short: 'Blue'
-  },
-  Axanthic: {
-    category: 'recessive',
-    states: ['Visual','Het','66% Poss Het','50% Poss Het','Normal','Unknown'],
-    short: 'Axanthic'
   },
 };
 let geneCounters = { sgf: 0, sgm: 0, dgf: 0, dgm: 0, sire: 0, dam: 0 };
@@ -361,9 +438,18 @@ function addGene(parent, prefillGene, prefillState) {
 }
 function refreshGeneSelect(sel, parent, currentGene) {
   const used = getUsedGenes(parent);
+  const colorMap = {
+    'recessive': '#3a9ce5',
+    'incdominant': '#af7ac5',
+    'dominant': '#52be80',
+    'lineage': '#d4a843',
+    'nonmendelian': '#e8866a'
+  };
   sel.innerHTML = Object.keys(GENES).map(g => {
     const disabled = used.includes(g) && g !== currentGene;
-    return `<option value="${g}" ${g === currentGene ? 'selected' : ''} ${disabled ? 'disabled style="color:#4a4438"' : ''}>${g}${disabled ? ' ✓' : ''}</option>`;
+    const category = GENES[g].category;
+    const color = colorMap[category] || 'inherit';
+    return `<option value="${g}" ${g === currentGene ? 'selected' : ''} ${disabled ? `disabled style="color:#4a4438"` : `style="color:${color}"`}>${g}${disabled ? ' ✓' : ''}</option>`;
   }).join('');
 }
 function refreshAllGeneSelects(parent) {
@@ -772,25 +858,27 @@ function combineGeneResults(allGeneResults) {
 function formatPhenotype(combo) {
   const visuals = [], hets = [], possHets = [], supers = [];
   const genotypeparts = [];
+  const geneTypes = {};
   for (const [gene, state] of Object.entries(combo)) {
     const g = GENES[gene];
     if (!g) continue;
+    if (!geneTypes[g.category]) geneTypes[g.category] = [];
     if (g.category === 'recessive') {
-      if (state === 'visual') { visuals.push(gene); genotypeparts.push(`hom ${g.short}`); }
-      else if (state === 'het') { hets.push(gene); genotypeparts.push(`het ${g.short}`); }
-      else if (state === '66poss') { possHets.push(gene); genotypeparts.push(`66% poss het ${g.short}`); }
+      if (state === 'visual') { visuals.push(gene); genotypeparts.push(`hom ${g.short}`); geneTypes.recessive.push(gene); }
+      else if (state === 'het') { hets.push(gene); genotypeparts.push(`het ${g.short}`); geneTypes.recessive.push(gene); }
+      else if (state === '66poss') { possHets.push(gene); genotypeparts.push(`66% poss het ${g.short}`); geneTypes.recessive.push(gene); }
       else { genotypeparts.push(`nrm ${g.short}`); }
     } else if (g.category === 'incdominant') {
-      if (state === 'super') { supers.push(gene); genotypeparts.push(`${g.short}/Silkback`); }
-      else if (state === 'visual') { visuals.push(`Leatherback`); genotypeparts.push(`het ${g.short}`); }
+      if (state === 'super') { supers.push(gene); genotypeparts.push(`${g.short}/Silkback`); if(!geneTypes.incdominant) geneTypes.incdominant=[]; geneTypes.incdominant.push(gene); }
+      else if (state === 'visual') { visuals.push(`Leatherback`); genotypeparts.push(`het ${g.short}`); if(!geneTypes.incdominant) geneTypes.incdominant=[]; geneTypes.incdominant.push(gene); }
       else { genotypeparts.push(`nrm ${g.short}`); }
     } else if (g.category === 'dominant') {
-      if (state === 'visual') { visuals.push(gene); genotypeparts.push(`${g.short} dominant`); }
+      if (state === 'visual') { visuals.push(gene); genotypeparts.push(`${g.short} dominant`); if(!geneTypes.dominant) geneTypes.dominant=[]; geneTypes.dominant.push(gene); }
       else { genotypeparts.push(`nrm ${g.short}`); }
     } else if (g.category === 'nonmendelian') {
-      if (state !== 'None') { visuals.push(`${state} ${gene}`); genotypeparts.push(state); }
+      if (state !== 'None') { visuals.push(`${state} ${gene}`); genotypeparts.push(state); if(!geneTypes.nonmendelian) geneTypes.nonmendelian=[]; geneTypes.nonmendelian.push(gene); }
     } else if (g.category === 'lineage') {
-      if (state === 'visual') { visuals.push(gene); genotypeparts.push(`${g.short} lineage`); }
+      if (state === 'visual') { visuals.push(gene); genotypeparts.push(`${g.short} lineage`); if(!geneTypes.lineage) geneTypes.lineage=[]; geneTypes.lineage.push(gene); }
     }
   }
   const zeroVisual = combo['Zero'] === 'visual';
@@ -814,7 +902,8 @@ function formatPhenotype(combo) {
     hasSuper: supers.length > 0,
     hasVisual: visuals.length > 0 || isWero,
     hasHet: hets.length > 0,
-    isWero: isWero
+    isWero: isWero,
+    geneTypes: geneTypes
   };
 }
 function renderResults(results, warnings, infos) {
@@ -851,7 +940,17 @@ function renderResults(results, warnings, infos) {
     else if (r.hasSuper) tagHtml += `<span class="tag tag-super">Super</span> `;
     if (r.hasVisual && !r.hasSuper && !r.isWero) tagHtml += `<span class="tag tag-visual">Visual</span> `;
     if (r.hasHet) tagHtml += `<span class="tag tag-het">Het</span> `;
-    tdPheno.innerHTML = `<div class="phenotype-name">${tagHtml}${r.phenotype}</div>`;
+    let geneCategoryHtml = '';
+    if (r.geneTypes && Object.keys(r.geneTypes).length > 0) {
+      const cats = [];
+      if (r.geneTypes.recessive?.length) cats.push(`<span class="gene-cat recessive">Recessive: ${r.geneTypes.recessive.join(', ')}</span>`);
+      if (r.geneTypes.incdominant?.length) cats.push(`<span class="gene-cat codom">Co-Dom: ${r.geneTypes.incdominant.join(', ')}</span>`);
+      if (r.geneTypes.dominant?.length) cats.push(`<span class="gene-cat dominant">Dominant: ${r.geneTypes.dominant.join(', ')}</span>`);
+      if (r.geneTypes.lineage?.length) cats.push(`<span class="gene-cat lineage">Lineage: ${r.geneTypes.lineage.join(', ')}</span>`);
+      if (r.geneTypes.nonmendelian?.length) cats.push(`<span class="gene-cat nonmend">Non-Mendelian: ${r.geneTypes.nonmendelian.join(', ')}</span>`);
+      geneCategoryHtml = cats.length > 0 ? `<div class="gene-categories">${cats.join('')}</div>` : '';
+    }
+    tdPheno.innerHTML = `<div class="phenotype-name">${tagHtml}${r.phenotype}</div>${geneCategoryHtml}`;
     tr.appendChild(tdPheno);
     const tdGeno = document.createElement('td');
     tdGeno.innerHTML = `<div class="genotype-code">${r.genotype}</div>`;
@@ -1025,7 +1124,7 @@ function exportPNG() {
           <div style="font-family:'Syne',sans-serif;font-size:26px;font-weight:800;line-height:1">
             Linage <span style="color:#d4a843">Tool</span>
           </div>
-          <div style="font-size:10px;color:#8a7f6e;letter-spacing:0.14em;text-transform:uppercase;margin-top:6px">Scrappy's Exotic Yard · Bearded Dragon Phenotype & Probability Engine</div>
+          <div style="font-size:10px;color:#8a7f6e;letter-spacing:0.14em;text-transform:uppercase;margin-top:6px">HEX REPTILES · Bearded Dragon Phenotype & Probability Engine</div>
         </div>
         <div style="font-size:10px;color:#4a4438;letter-spacing:0.1em">${new Date().toLocaleDateString()}</div>
       </div>
